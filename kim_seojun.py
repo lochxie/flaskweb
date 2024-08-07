@@ -45,14 +45,28 @@
 # sign = [True,False,True]
 # print(solution(absolution,sign))
 
-def besu_pattern(chiper, code):
-    score = ''
-    for i in range(len(chiper)):
-        if (i+1) % code == 0:
-            score += chiper[i]
+# def besu_pattern(chiper, code):
+#     score = ''
+#     for i in range(len(chiper)):
+#         if (i+1) % code == 0:
+#             score += chiper[i]
             
-    return score
+#     return score
 
-chiper = 'dfjardstddetckdaccccdegk'
-code = 4
-print(besu_pattern(chiper,code))
+# chiper = 'dfjardstddetckdaccccdegk'
+# code = 4
+# print(besu_pattern(chiper,code))
+
+def protect_number(p):
+    p = str(p)
+    four_nums = ''
+    stars = ''
+    result = ''
+    for i in range(-1,-4,-1):
+        four_nums = four_nums + p[i]
+    stars = '*' * (len(p)-4)
+    result = four_nums + stars
+    return result
+
+phone_nums = '01012345678'
+print(protect_number(phone_nums))
