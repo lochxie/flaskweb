@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8"/>
     <title>문의 폼</title>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for i in messages %}
+        <li class="flash">{{i}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}"/>
 </head>
 <body>
@@ -24,7 +34,7 @@
             <tr>
                 <td>문의내용</td>
                 <td>
-                    <textarea name="discription" placeholder="문의내용">{{discription}}</textarea>
+                    <textarea name="description" placeholder="문의내용">{{description}}</textarea>
                 </td>
             </tr>
         </table>
