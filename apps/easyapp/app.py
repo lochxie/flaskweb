@@ -13,7 +13,7 @@ app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'jojju486@gmail.com'
 app.config['MAIL_PASSWORD'] = 'stkm cgck saeq hlju'
 
-mail = Mail(app)
+mail = Mail(app) 
 
 @app.route("/")
 def index():
