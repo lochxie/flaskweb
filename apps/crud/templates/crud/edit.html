@@ -2,21 +2,21 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>사용자 신규 작성</title>
+    <title>사용자 편집</title>
 </head>
 <body>
-    <h2>사용자 신규 작성</h2>
-    <form action="{{url_for('crud.create_user')}}" method="POST" novalidate="novalidate">
+    <h2>사용자 편집</h2>
+    <form action="{{url_for('crud.edit_user', user_id=user.id)}}" method="POST" novalidate="novalidate">
         {{form.csrf_token}}
         <p>
-            {{form.username.label}} {{form.username(placeholder="사용자명")}}
+            {{form.username.label}} {{form.username(placeholder="사용자명", value=user.username)}}
         </p>
         {% for i in form.username.errors %}
         <span style="color: red;">{{i}}</span>
         {% endfor %}
 
         <p>
-            {{form.email.label}} {{form.email(placeholder="이메일")}}
+            {{form.email.label}} {{form.email(placeholder="이메일", value=user.email)}}
         </p>
         {% for i in form.email.errors %}
         <span style="color: red;">{{i}}</span>
@@ -30,7 +30,7 @@
         {% endfor %}
 
         <p>
-            {{form.submit()}}
+            <input type="submit" value="업데이트"/>
         </p>
     </form>
 </body>

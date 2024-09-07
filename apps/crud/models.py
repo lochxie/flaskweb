@@ -10,7 +10,7 @@ class User(db.Model):
     username = db.Column(db.String, index=True)
     email = db.Column(db.String, index=True)
     #userid = db.Column(db.String, index=True)
-    password = db.Column(db.String)
+    password_hash = db.Column(db.String)
     create_at = db.Column(db.DateTime, default=datetime.now)
     update_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 

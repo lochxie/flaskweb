@@ -17,7 +17,7 @@ def index():
 @crud.route("/sql")
 def sql():
     #user = User(
-    #    username = '김소연',
+    #    username = '김',
     #    email = 'lochxie@naver.com',
     #    userid = 'rla',
     #    password_hash = '1111'
@@ -30,17 +30,35 @@ def sql():
     db.session.commit()
     return '콘솔 로그 확인'
 
-@crud.route('/user/new',methods=["GET","POST"])
+@crud.route('/users/new',methods=["GET","POST"])
 def create_user():
     form = UserForm()
     if form.validate_on_submit():
         user = User(
             username = form.username.data,
             email = form.email.data,
-            password = form.password.data
+            password_hash = form.password.data
         )
         db.session.add(user)
         db.session.commit()
 
         return redirect(url_for("crud.users"))
     return render_template("crud/create.html", form=form)
+
+@crud.route('/users')
+def users():
+    users = User.query.all()
+    return render_template('crud/index.html', users=users)
+
+@crud.route('/user/<user_id>',methods=["GET","POST"])
+def edit_user(user_id):
+    form = UserForm()
+    user = User.query.filter_by(id=user_id).first()
+    if form.validate_on_submit():
+        user.username = form.username.data
+        user.email = form.email.data
+        user.password_hash = form.password.data
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('crud.users'))  
+    return render_template('crud/edit.html', user=user, form=form)

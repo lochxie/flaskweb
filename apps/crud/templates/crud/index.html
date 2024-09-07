@@ -3,9 +3,24 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="{{url_for('crud.static', filename='style.css')}}" />
-        <title>CRUD</title>
+        <title>사용자 일람</title>
     </head>
     <body>
-        <p class="crud">CRUD 애플리케이션</p>
+        <h2>사용자 일람</h2>
+        <a href="{{ url_for('crud.create_user') }}">사용자 신규 작성</a>
+        <table>
+            <tr>
+                <th>사용자 id</th>
+                <th>사용자명</th>
+                <th>이메일</th>
+            </tr>
+            {% for i in users %}
+                <tr>
+                    <td><a href="{{url_for('crud.edit_user', user_id=i.id)}}">{{ i.id }}</a></td>
+                    <td>{{ i.username }}</td>
+                    <td>{{ i.email }}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </body>
 </html>
