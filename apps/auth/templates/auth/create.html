@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자 신규 작성</title>
+    <link rel = "stylesheet" href="{{url_for('auth.static',filename='createstyle.css')}}" />
+</head>
+<body>
+    <div id="form-container">
+        <div id="form-inner-container">
+            <div id="sign-up-container">
+                <h2>사용자 신규 작성</h2>
+                <form action="{{url_for('auth.create_user')}}" method="POST" novalidate="novalidate">
+                    {{form.csrf_token}}
+                    
+                    {{form.username.label}} 
+                    {{form.username(placeholder="사용자명")}}
+                    
+                    {% for i in form.username.errors %}
+                    <p><span style="color: red;">{{i}}</span></p>
+                    {% endfor %}
+
+                    {{form.email.label}} {{form.email(placeholder="이메일")}}
+                    
+                    {% for i in form.email.errors %}
+                    <p><span style="color: red;">{{i}}</span></p>
+                    {% endfor %}
+
+                    {{form.password.label}} {{form.password(placeholder="비밀번호")}}
+                    
+                    {% for i in form.password.errors %}
+                    <p><span style="color: red;">{{i}}</span></p>
+                    {% endfor %}
+                    
+                    <div id="form-controls">
+                        <button type="submit">sign up</button>
+                        <button type="button" id=""toggleingIn>sign in</button>
+                    </div>
+
+                    <input type="hidden">
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
